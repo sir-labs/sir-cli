@@ -192,6 +192,11 @@ class Handler(SimpleHTTPRequestHandler):
         self.send_header("Referrer-Policy", "no-referrer")
         super().end_headers()
 
+    def guess_type(self, path):
+        # without a charset, pages lacking <meta charset> render Thai as mojibake
+        kind = super().guess_type(path)
+        return f"{kind}; charset=utf-8" if kind.startswith("text/") else kind
+
     def translate_path(self, path):
         relative = unquote(urlsplit(path).path).lstrip("/")
         candidate = (ROOT / relative).resolve()
@@ -271,5 +276,8 @@ if __name__ == "__main__":
         monitor = render_index([], mode="monitor")
         assert b"Syncthing Monitor" in monitor and b'/api/sync' in monitor
         assert all(label in monitor for label in (b"Local data", b"Global data", b"Device details", b"Last checked"))
+        handler = object.__new__(Handler)
+        assert handler.guess_type("a.html") == "text/html; charset=utf-8"
+        assert handler.guess_type("a.png") == "image/png"
     else:
         ThreadingHTTPServer(("0.0.0.0", 80), Handler).serve_forever()

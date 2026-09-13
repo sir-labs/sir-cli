@@ -4,6 +4,13 @@ All notable changes to sir-go are documented here.
 
 ---
 
+## [v6.1.1] — 2026-09-13
+
+### Fixed
+- **`sir html` pages rendering Thai as mojibake** — files were served as bare `text/html`, so pages without `<meta charset>` were decoded as Windows-1252. Every `text/*` response now carries `charset=utf-8`.
+
+---
+
 ## [v6.1.0] — 2026-09-13
 
 ### Added
