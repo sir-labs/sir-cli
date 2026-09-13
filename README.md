@@ -65,6 +65,9 @@ sir <command>
 | `sir -w .` | TUI watch mode (scan path) |
 | `sir version` | Print current version |
 | `sir upgrade` | Upgrade to the latest release |
+| `sir html add <path> <name>` | Serve a folder of HTML read-only at `<name>.sir-labs.com` (via sir-watcher) |
+| `sir html ls` | List served HTML sites |
+| `sir html rm <name>` | Stop serving a site |
 
 ### Flags
 

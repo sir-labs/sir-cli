@@ -4,6 +4,13 @@ All notable changes to sir-go are documented here.
 
 ---
 
+## [v6.1.0] — 2026-09-13
+
+### Added
+- **`sir html add/ls/rm`** — publish a local folder of HTML files at `<name>.sir-labs.com`. Each site is a `python:3.13-alpine` container with `proxy.*` labels on `sir-server_sir-net`, so sir-watcher routes it; container labels are the registry. `add` refuses a hostname that's already served, and `rm` only removes containers it created.
+
+---
+
 ## [v6.0.1] — 2026-08-18
 
 ### Fixed

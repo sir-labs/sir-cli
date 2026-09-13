@@ -20,7 +20,7 @@ import (
 )
 
 // version is set at build time via -ldflags "-X main.version=vX.Y.Z"
-var version = "v6.0.1"
+var version = "v6.1.0"
 
 func main() {
 	var (
@@ -202,6 +202,7 @@ Run without arguments or with --list to see available versions.`,
 			return c
 		}(),
 		configCmd,
+		htmlCmd(),
 	)
 
 	f := rootCmd.Flags()
